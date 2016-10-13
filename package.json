@@ -1,0 +1,34 @@
+{
+  "name": "bbl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "babel-plugin-transform-decorators": "^6.8.0",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-es2016": "^6.11.3",
+    "eslint": "^3.1.1",
+    "eslint-plugin-babel": "^3.3.0"
+  },
+  "dependencies": {
+    "babel-plugin-transform-class-properties": "^6.16.0",
+    "babel-polyfill": "^6.9.1",
+    "babel-register": "^6.9.0",
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "node-fetch": "^1.5.3",
+    "seneca": "^2.1.0",
+    "seneca-rabbitmq-transport": "^0.3.1",
+    "seneca-web": "^2.0.0",
+    "seneca-web-adapter-express": "^1.0.2"
+  }
+}

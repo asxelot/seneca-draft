@@ -1,0 +1,7 @@
+{
+  "services": ["MathService"],
+  "servicesLocation": "./services",
+  "http": {
+    "port": 4000
+  }
+}
