@@ -1,7 +1,20 @@
 {
-  "services": ["MathService"],
+  "services": ["MathService", "GiropayPaymentService"],
   "servicesLocation": "./services",
   "http": {
     "port": 4000
+  },
+  "db": {
+    "client": "mysql",
+    "connection": {
+      "host": "127.0.0.1",
+      "user": "root",
+      "password": "123",
+      "database": "avs",
+      "charset": "utf8"
+    }
+  },
+  "user": {
+    "passwordRegex": "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,255}$"
   }
 }

@@ -198,7 +198,7 @@
     "no-trailing-spaces": 0,
     "no-extra-parens": 0,
     "no-underscore-dangle": 0,
-    "one-var": [2, "never"],
+    "one-var": 0,
     "padded-blocks": [2, "never"],
     "semi": 0,
     "semi-spacing": [2, {

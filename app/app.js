@@ -7,19 +7,29 @@ import { seneca } from './seneca';
 import config from '../config.json';
 
 const routes = [];
+const coreServices = [
+  'UserService'
+];
 
 // register each microservice
-config.services.forEach(service => {
+coreServices.concat(config.services).forEach(service => {
   const Service = require(`${config.servicesLocation}/${service}`).default;
 
   seneca.use(Service.register());
-  Service.route && routes.push(Service.route);
+  Service.routes && routes.push(Service.routes);
 });
+
+const context = express()
+  .use(bodyParser.urlencoded({ extended: true }))
+  .use(bodyParser.json());
 
 const webConfig = {
   routes,
   adapter,
-  context: express()
+  context,
+  options: {
+    parseBody: false
+  }
 };
 
 seneca
@@ -28,10 +38,7 @@ seneca
   .ready(() => {
     const app = seneca.export('web/context')();
 
-    app.use(bodyParser.json());
     app.listen(config.http.port, () => {
       console.log(`server started on ${config.http.port}`);
     });
-
-    seneca.act({ name: 'math', method: 'sum', left: 1, right: 2 }, console.log)
   });
