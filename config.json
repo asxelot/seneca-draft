@@ -2,6 +2,7 @@
   "services": ["MathService", "GiropayPaymentService"],
   "servicesLocation": "./services",
   "http": {
+    "host": "http://localhost",
     "port": 4000
   },
   "db": {

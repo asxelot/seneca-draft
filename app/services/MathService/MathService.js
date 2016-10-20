@@ -26,7 +26,7 @@ export default class MathService extends MicroService {
 
   async test() {
     const user = await this.act({ name: 'user', method: 'fetch', query: {
-      id: 'ee797ad0-de56-4b31-a6ee-6a027322ddff'
+      id: 'b27d0658-80b7-4791-bfee-ba969c9b68ac'
     }});
 
     console.log('user', user)

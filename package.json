@@ -32,6 +32,7 @@
     "knex": "^0.12.5",
     "mysql": "^2.11.1",
     "node-fetch": "^1.5.3",
+    "prmsf": "^1.1.0",
     "seneca": "^2.1.0",
     "seneca-rabbitmq-transport": "^0.3.1",
     "seneca-web": "^2.0.0",

@@ -8,7 +8,8 @@ import config from '../config.json';
 
 const routes = [];
 const coreServices = [
-  'UserService'
+  'UserService',
+  'ServiceParamsService'
 ];
 
 // register each microservice
@@ -39,6 +40,6 @@ seneca
     const app = seneca.export('web/context')();
 
     app.listen(config.http.port, () => {
-      console.log(`server started on ${config.http.port}`);
+      seneca.log.info(`server started on ${config.http.port}`);
     });
   });

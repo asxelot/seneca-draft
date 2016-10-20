@@ -1,9 +1,12 @@
 import joi from 'joi';
 
 import { Model } from '../db';
+import Profile from './profile';
 import config from '../../config.json';
 
 export default class User extends Model {
+  profile() { return this.hasOne(Profile, 'userId'); }
+
   toJSON(options) {
     const result = super.toJSON(options);
 

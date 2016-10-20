@@ -5,7 +5,7 @@ export default class UserService extends MicroService {
   name = 'user';
 
   async fetch({ query }) {
-    const user = await new User(query).fetch();
+    const user = await new User(query).fetch({ withRelated: ['profile'] });
 
     return user.toJSON();
   }

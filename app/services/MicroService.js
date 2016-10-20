@@ -9,6 +9,16 @@ export default class MicroService {
   
   act = bluebird.promisify(seneca.act, { context: seneca });
 
+  async getParam(partnerId, key) {
+    const param = await this.act('name:params,method:get', {
+      partnerId,
+      key,
+      service: this.name
+    });
+
+    return JSON.parse(param.value);
+  }
+
   static register() {
     const Service = this;
 
@@ -24,13 +34,17 @@ export default class MicroService {
       methods.forEach(method => {
         seneca.add({ method }, (msg, res) => {
           Promise.resolve(service[method](msg))
-            .then(result => res(null, result))
+            .then(result => {
+              res(null, result);
+
+              seneca.watch && seneca.watch(msg, result);
+            })
             .catch(error => res(error));
         });
       });
 
       // give a name for our service
-      return service.name || Service.name;
+      return service.name;
     }
   }
 }
