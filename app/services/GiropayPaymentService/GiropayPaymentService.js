@@ -52,9 +52,7 @@ export default class GiropayPaymentService extends MicroService {
       form.hash = crypto.createHmac('md5', password, 'utf8').update(data).digest('hex');
 
       const giroRes = await p.wrap(cb => request.post(
-        'https://payment.girosolution.de/girocheckout/api/v2/transaction/start',
-        { form },
-        cb
+        'https://payment.girosolution.de/girocheckout/api/v2/transaction/start', { form }, cb
       ));
 
       const giroJson = JSON.parse(giroRes.body);
@@ -69,10 +67,39 @@ export default class GiropayPaymentService extends MicroService {
     }
   }
 
+  async back({ args: { query } }) {
+    try {
+      const {
+        gcReference,
+        gcMerchantTxId,
+        gcBackendTxId,
+        gcAmount,
+        gcCurrency,
+        gcResultPayment,
+        gcResultAVS,
+        gcHash
+      } = query;
+      
+
+    } catch (error) {
+
+    }
+  }
+
   _getRedirectUrl(partnerId, base = 'back') {
     const { http: { host, port } } = config;
 
     return `${host}:${port}/${this.name}/${base}`;
+  }
+
+  async _checkHash(data, partnerId) {
+    const _data = Object.assign({}, data);
+    delete _data.gcHash;
+
+    const _joinedData = Object.values(_data).join('');
+    const password = await this.getParam(partnerId, 'projectPassword');
+
+    return data.gcHash === crypto.createHmac('md5', password, 'utf8').update(_joinedData).digest('hex');
   }
 
   static routes = {
@@ -82,10 +109,10 @@ export default class GiropayPaymentService extends MicroService {
       check: {
         POST: true,
         suffix:'/:userId'
-      }
-    },
-    back: { GET: true },
-    notify: { GET: true }
+      },
+      back: { GET: true },
+      notify: { GET: true }
+    }
   };
 }
 

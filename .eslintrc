@@ -213,7 +213,7 @@
     "space-infix-ops": 2,
     "spaced-comment": 2,
     "no-multi-spaces": 0,
-    "max-len": [2, 100, 2, {
+    "max-len": [2, 120, 2, {
       "ignoreComments": false,
       "ignoreUrls": true
     }]
